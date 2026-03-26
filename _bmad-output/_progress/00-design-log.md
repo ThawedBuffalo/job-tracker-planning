@@ -33,10 +33,10 @@
 
 | Scenario | Step | Page | Status | Updated |
 |----------|------|------|--------|---------|
-| 01-priyas-core-pipeline-momentum | 1.1 | Home | specified | 2026-03-26 |
-| 01-priyas-core-pipeline-momentum | 1.2 | Dashboard | specified | 2026-03-26 |
-| 01-priyas-core-pipeline-momentum | 1.3 | Add Application | specified | 2026-03-26 |
-| 01-priyas-core-pipeline-momentum | 1.4 | Confirm Saved | specified | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.1 | Home | building | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.2 | Dashboard | building | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.3 | Add Application | building | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.4 | Confirm Saved | building | 2026-03-26 |
 | 02-claras-follow-up-confidence-loop | 2.1 | Email Link Entry | specified | 2026-03-26 |
 | 02-claras-follow-up-confidence-loop | 2.2 | Application Detail | specified | 2026-03-26 |
 | 02-claras-follow-up-confidence-loop | 2.3 | Next-Step Guidance | specified | 2026-03-26 |

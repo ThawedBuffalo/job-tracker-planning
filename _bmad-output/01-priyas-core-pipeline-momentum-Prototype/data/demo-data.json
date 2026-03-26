@@ -1,0 +1,101 @@
+{
+  "user": {
+    "id": "demo-user-001",
+    "firstName": "Priya",
+    "lastName": "Patel",
+    "email": "priya.patel@email.com",
+    "createdAt": "2026-01-15T00:00:00.000Z",
+    "updatedAt": "2026-03-26T00:00:00.000Z"
+  },
+  "applications": [
+    {
+      "id": "app-001",
+      "userId": "demo-user-001",
+      "company": "Stripe",
+      "role": "Senior Software Engineer",
+      "status": "INTERVIEW_SCHEDULED",
+      "source": "LinkedIn",
+      "jobUrl": "https://stripe.com/jobs/listing/senior-software-engineer",
+      "location": "Remote",
+      "salaryRange": "$160k–$200k",
+      "appliedAt": "2026-03-20T09:00:00.000Z",
+      "lastUpdatedAt": "2026-03-23T14:00:00.000Z",
+      "nextAction": "Technical interview on 2026-03-28 at 2pm",
+      "notes": "Applied via LinkedIn referral from Anika. Recruiter reached out same day."
+    },
+    {
+      "id": "app-002",
+      "userId": "demo-user-001",
+      "company": "Notion",
+      "role": "Backend Engineer",
+      "status": "APPLIED",
+      "source": "Company Website",
+      "jobUrl": "https://notion.so/jobs/backend-engineer",
+      "location": "San Francisco, CA (Hybrid)",
+      "salaryRange": "$150k–$180k",
+      "appliedAt": "2026-03-22T11:30:00.000Z",
+      "lastUpdatedAt": "2026-03-22T11:30:00.000Z",
+      "nextAction": "Follow up if no response by 2026-04-05",
+      "notes": "Submitted through careers page. Tailored cover letter for their API platform team."
+    },
+    {
+      "id": "app-003",
+      "userId": "demo-user-001",
+      "company": "Linear",
+      "role": "Platform Engineer",
+      "status": "PHONE_SCREEN",
+      "source": "Referral",
+      "jobUrl": "https://linear.app/jobs/platform-engineer",
+      "location": "Remote",
+      "salaryRange": "$155k–$185k",
+      "appliedAt": "2026-03-18T08:00:00.000Z",
+      "lastUpdatedAt": "2026-03-25T10:00:00.000Z",
+      "nextAction": "Await scheduling link for technical round",
+      "notes": "Phone screen with hiring manager went well. They mentioned fast process."
+    },
+    {
+      "id": "app-004",
+      "userId": "demo-user-001",
+      "company": "Vercel",
+      "role": "Staff Engineer",
+      "status": "OFFER_RECEIVED",
+      "source": "LinkedIn",
+      "jobUrl": "https://vercel.com/careers/staff-engineer",
+      "location": "Remote",
+      "salaryRange": "$190k–$230k",
+      "appliedAt": "2026-03-10T09:00:00.000Z",
+      "lastUpdatedAt": "2026-03-25T16:00:00.000Z",
+      "nextAction": "Respond to offer by 2026-03-30",
+      "notes": "Offer received: $210k base + equity. Deadline to respond is March 30."
+    },
+    {
+      "id": "app-005",
+      "userId": "demo-user-001",
+      "company": "Figma",
+      "role": "Software Engineer II",
+      "status": "APPLIED",
+      "source": "Company Website",
+      "jobUrl": "https://figma.com/jobs/software-engineer-ii",
+      "location": "New York, NY (Hybrid)",
+      "salaryRange": "$140k–$170k",
+      "appliedAt": "2026-03-24T14:00:00.000Z",
+      "lastUpdatedAt": "2026-03-24T14:00:00.000Z",
+      "nextAction": "Follow up if no response by 2026-04-07",
+      "notes": "Applied to collaborative tools team. Mentioned experience with real-time sync in cover letter."
+    }
+  ],
+  "statusLabels": {
+    "SAVED": "Saved",
+    "APPLIED": "Applied",
+    "PHONE_SCREEN": "Phone Screen",
+    "INTERVIEW_SCHEDULED": "Interview Scheduled",
+    "TECHNICAL_ROUND": "Technical Round",
+    "FINAL_ROUND": "Final Round",
+    "OFFER_RECEIVED": "Offer Received",
+    "ACCEPTED": "Accepted",
+    "REJECTED": "Rejected",
+    "WITHDRAWN": "Withdrawn",
+    "STALLED": "Stalled"
+  },
+  "comment": "Demo data for Priya's Core Pipeline Momentum scenario. Loads automatically on first open. Edit to change demo content."
+}
