@@ -10,22 +10,22 @@ pages_list:
     slug: "home"
     page_number: "1.1"
     description: "Authenticate and enter workspace"
-    status: "discussed"
+    status: "specified"
   - name: "Dashboard"
     slug: "dashboard"
     page_number: "1.2"
     description: "Start application entry from the main workspace"
-    status: "not_started"
+    status: "specified"
   - name: "Add Application"
     slug: "add-application"
     page_number: "1.3"
     description: "Enter job description information and submit"
-    status: "not_started"
+    status: "specified"
   - name: "Confirm Saved"
     slug: "confirm-saved"
     page_number: "1.4"
     description: "Verify success confirmation and readiness for next action"
-    status: "not_started"
-current_page_index: 1
+    status: "specified"
+current_page_index: 5
 total_pages: 4
 

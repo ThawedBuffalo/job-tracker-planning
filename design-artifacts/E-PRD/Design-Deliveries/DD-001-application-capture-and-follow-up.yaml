@@ -1,0 +1,214 @@
+delivery:
+  id: "DD-001"
+  name: "Job Tracker MVP — Application Capture + Follow-Up"
+  type: "user_flow"
+  status: "ready"
+  priority: "high"
+  created_by: "Freya (WDS Phase 4)"
+  created_at: "2026-03-26"
+  updated_at: "2026-03-26"
+  version: "1.0"
+
+description: |
+  Full MVP user flow covering four persona-driven scenarios:
+  1. Fast job entry (Priya) — sign in, dashboard, add application, confirm save
+  2. Follow-up confidence loop (Clara) — email deep link, application detail,
+     next-step guidance, confirm next action
+  3. Required-field fast entry (Ethan) — URL paste, missing field prompt,
+     fill required fields, save
+  4. Unified global entry (Ravi) — external URL paste, parsed data review,
+     complete required fields, save
+
+  All 16 pages are specified. Covers authentication, application CRUD,
+  status tracking, URL parsing, email deep-link routing, and guided
+  next-step recommendations.
+
+user_value:
+  problem: "Technical job seekers lose track of applications across tools and miss follow-up actions due to fragmented, high-friction workflows."
+  solution: "A single responsive web app with fast capture (URL paste + manual), guided next-step recommendations, and email-driven re-engagement to keep all applications in one place."
+  success_criteria:
+    - "User can add a new application from sign-in to confirmed save in under 2 minutes"
+    - "User arriving via status-change email can view, understand, and commit to a next action in under 3 minutes"
+    - "URL paste pre-fills at least job title, company, and job URL from supported job sites"
+    - "No application can be saved with empty required fields (title, company, status)"
+    - "All 4 scenario flows pass happy-path tests on desktop Chrome"
+
+design_artifacts:
+  scenarios:
+    - id: "01-priyas-core-pipeline-momentum"
+      path: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/"
+      screens:
+        - "1.1-home"
+        - "1.2-dashboard"
+        - "1.3-add-application"
+        - "1.4-confirm-saved"
+
+    - id: "02-claras-follow-up-confidence-loop"
+      path: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/"
+      screens:
+        - "2.1-email-link-entry"
+        - "2.2-application-detail"
+        - "2.3-next-step-guidance"
+        - "2.4-confirm-next-action"
+
+    - id: "03-ethans-required-field-fast-entry"
+      path: "C-UX-Scenarios/03-ethans-required-field-fast-entry/"
+      screens:
+        - "3.1-job-url-paste"
+        - "3.2-required-fields-prompt"
+        - "3.3-complete-missing-fields"
+        - "3.4-save-application"
+
+    - id: "04-ravis-unified-global-entry"
+      path: "C-UX-Scenarios/04-ravis-unified-global-entry/"
+      screens:
+        - "4.1-job-url-paste"
+        - "4.2-parsed-data-review"
+        - "4.3-complete-required-fields"
+        - "4.4-save-application"
+
+  user_flows:
+    - name: "Fast Entry Flow"
+      entry: "1.1-home"
+      exit: "1.4-confirm-saved"
+    - name: "Email Follow-Up Flow"
+      entry: "2.1-email-link-entry"
+      exit: "2.4-confirm-next-action"
+    - name: "URL Paste + Validation Flow"
+      entry: "3.1-job-url-paste"
+      exit: "3.4-save-application"
+    - name: "Unified Global Entry Flow"
+      entry: "4.1-job-url-paste"
+      exit: "4.4-save-application"
+
+  shared_components:
+    - "URL paste input with parse trigger and progress state (1.3, 3.1, 4.1)"
+    - "Missing-fields-only form (3.3, 4.3)"
+    - "Save confirmation with Add Another CTA (1.4, 3.4, 4.4)"
+    - "Application detail card with stage breadcrumb (2.2)"
+
+  design_system:
+    components: []
+    path: "D-Design-System/" # Not yet authored — design_system_mode: none
+
+technical_requirements:
+  platform:
+    frontend: "Flutter Web"
+    backend: "Spring Boot (Java)"
+    database: "PostgreSQL"
+    hosting: "Single VPS + Docker Compose + Nginx"
+
+  integrations:
+    - name: "JWT Authentication"
+      purpose: "Authenticate users and support deep-link session restoration"
+      required: true
+
+    - name: "Java Mail Sender (SMTP)"
+      purpose: "Send status-change email notifications with deep links to 2.1"
+      required: true
+
+    - name: "Jsoup (URL parser)"
+      purpose: "Extract job title, company, location, and URL from pasted job links"
+      required: true
+
+  data_models:
+    - name: "Application"
+      fields:
+        - "id (UUID)"
+        - "user_id (FK)"
+        - "job_title (required)"
+        - "company (required)"
+        - "location"
+        - "job_url"
+        - "status (required: Applied | Screening | Interview | Offer | Hired | Rejected | Withdrawn)"
+        - "notes"
+        - "created_at"
+        - "updated_at"
+        - "source (manual | url_paste)"
+
+    - name: "NextAction"
+      fields:
+        - "id (UUID)"
+        - "application_id (FK)"
+        - "action_type"
+        - "due_date"
+        - "completed_at"
+        - "created_at"
+
+    - name: "StatusHistory"
+      fields:
+        - "id (UUID)"
+        - "application_id (FK)"
+        - "from_status"
+        - "to_status"
+        - "changed_at"
+
+  performance_requirements:
+    - "Sign-in to dashboard: < 2s on desktop broadband"
+    - "URL parse response: < 3s; show progress indicator at 500ms"
+    - "Page transitions: < 300ms"
+    - "Deep link resolution: < 1.5s including session restore"
+
+acceptance_criteria:
+  functional:
+    - "User can sign in with email and password and land on Dashboard"
+    - "User can add an application manually (title + company + status minimum)"
+    - "User can paste a job URL and have title, company, location, and job_url pre-filled where parsable"
+    - "System blocks save and shows required-fields prompt when title, company, or status is empty"
+    - "User can view application detail with current status and stage history"
+    - "User receives a next-step recommendation based on current application stage"
+    - "User can confirm or schedule a next action, which is recorded against the application"
+    - "Email deep links authenticate the user and route directly to the relevant application detail"
+    - "Dashboard shows full application list with status"
+
+  non_functional:
+    - "All flows work on desktop Chrome, Firefox, and Safari (latest)"
+    - "All flows work on mobile web Chrome (iOS + Android)"
+    - "All form inputs are keyboard-navigable with visible focus states"
+    - "Color contrast meets WCAG AA minimum"
+    - "No application data is accessible without authentication"
+
+  edge_cases:
+    - "URL paste: unsupported domain → show manual entry fallback, do not block"
+    - "URL paste: parse timeout → show partial results with manual override"
+    - "Email deep link: session expired → transparent sign-in then redirect to target"
+    - "Email deep link: application deleted → 404 with link back to Dashboard"
+    - "Required fields: all three missing → surface all three in one prompt, not sequentially"
+    - "Dashboard: no applications yet → empty state with prominent Add Application CTA"
+    - "Next-step guidance: no recommendation available → show 'Check back after status update' state"
+
+testing_guidance:
+  user_testing:
+    - "Test Scenario 01 (Priya) with a participant unfamiliar with the app — time from open to confirmed save"
+    - "Test Scenario 02 (Clara) by sending a real status-change email and asking participant to complete follow-up"
+    - "Test Scenario 03 (Ethan) using a LinkedIn job URL and a Greenhouse job URL — compare parse quality"
+    - "Validate empty state on Dashboard resonates with first-time users"
+
+  qa_testing:
+    - "Happy-path all 4 flows on desktop Chrome"
+    - "Responsive spot-check all 4 flows on mobile web (375px viewport)"
+    - "URL parse with: LinkedIn, Indeed, Greenhouse, Lever, unrecognized domain, malformed URL"
+    - "Authentication: valid credentials, wrong password, expired session + deep link recovery"
+    - "Required field validation: submit with all three empty, submit with one empty, submit with all filled"
+    - "Email deep link: valid link, expired session, deleted application"
+
+estimated_complexity:
+  size: "large"
+  effort: "3-4 weeks"
+  risk: "medium"
+  dependencies: []
+  risk_notes: |
+    Medium risk due to URL parsing reliability across job sites (Jsoup + site-specific
+    selectors will need iteration). Email deep-link session handling adds auth complexity.
+    All other flows are standard CRUD + navigation.
+
+notes: |
+  - Shared component candidates should be extracted to a component library before
+    implementation begins: URL paste input, missing-fields form, save confirmation.
+  - design_system_mode is set to 'none' — no formal design system. Implement using
+    Flutter Material with a custom theme. Tokens can be extracted from spec layouts
+    during implementation.
+  - Application status model is canonical and locked: Applied → Screening → Interview
+    → Offer → Hired | Rejected | Withdrawn. Do not add statuses without design review.
+  - Next-step guidance content (what to do at each stage) should be data-driven, not
+    hardcoded — build a small recommendation table in the backend.

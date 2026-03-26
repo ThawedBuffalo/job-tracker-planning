@@ -13,8 +13,8 @@
 - [x] Complete product brief — Phase 1
 - [x] Define trigger map — Phase 2
 - [x] Create user scenarios — Phase 3
-- [ ] Detail page specifications — Phase 4
-- [ ] Prepare design delivery package — Phase 4
+- [x] Detail page specifications — Phase 4
+- [x] Prepare design delivery package — Phase 4
 
 ---
 
@@ -22,7 +22,6 @@
 
 | Task | Started | Agent |
 |------|---------|-------|
-| Prepare Phase 4: UX Design handoff from approved scenarios | 2026-03-26 | Freya |
 
 **Rules:** Mark what you start. Complete it when done (move to Progress/Log). One task at a time per agent.
 
@@ -34,6 +33,22 @@
 
 | Scenario | Step | Page | Status | Updated |
 |----------|------|------|--------|---------|
+| 01-priyas-core-pipeline-momentum | 1.1 | Home | specified | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.2 | Dashboard | specified | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.3 | Add Application | specified | 2026-03-26 |
+| 01-priyas-core-pipeline-momentum | 1.4 | Confirm Saved | specified | 2026-03-26 |
+| 02-claras-follow-up-confidence-loop | 2.1 | Email Link Entry | specified | 2026-03-26 |
+| 02-claras-follow-up-confidence-loop | 2.2 | Application Detail | specified | 2026-03-26 |
+| 02-claras-follow-up-confidence-loop | 2.3 | Next-Step Guidance | specified | 2026-03-26 |
+| 02-claras-follow-up-confidence-loop | 2.4 | Confirm Next Action | specified | 2026-03-26 |
+| 03-ethans-required-field-fast-entry | 3.1 | Job URL Paste | specified | 2026-03-26 |
+| 03-ethans-required-field-fast-entry | 3.2 | Required Fields Prompt | specified | 2026-03-26 |
+| 03-ethans-required-field-fast-entry | 3.3 | Complete Missing Fields | specified | 2026-03-26 |
+| 03-ethans-required-field-fast-entry | 3.4 | Save Application | specified | 2026-03-26 |
+| 04-ravis-unified-global-entry | 4.1 | Job URL Paste | specified | 2026-03-26 |
+| 04-ravis-unified-global-entry | 4.2 | Parsed Data Review | specified | 2026-03-26 |
+| 04-ravis-unified-global-entry | 4.3 | Complete Required Fields | specified | 2026-03-26 |
+| 04-ravis-unified-global-entry | 4.4 | Save Application | specified | 2026-03-26 |
 
 **Status values:** `discussed` -> `wireframed` -> `specified` -> `explored` -> `building` -> `built` -> `approved` | `removed`
 
@@ -108,6 +123,23 @@
 ---
 
 ## Log
+
+### 2026-03-26 — Design Delivery: DD-001 Application Capture + Follow-Up
+
+**Agent:** Freya (WDS Phase 4 — Handover)
+**Delivery:** DD-001
+**Scenarios packaged:** 4 (01 Priya, 02 Clara, 03 Ethan, 04 Ravi)
+**Pages:** 16 specified
+
+**Artifacts Created:**
+- `design-artifacts/E-PRD/Design-Deliveries/DD-001-application-capture-and-follow-up.yaml`
+- `design-artifacts/E-PRD/Design-Deliveries/TS-001-application-capture-and-follow-up.yaml`
+
+**Summary:** Packaged all 16 Phase 4 page specs into a single Design Delivery covering authentication, application CRUD, URL parsing, email deep-link routing, required-field validation, and guided next-step recommendations. Test scenario covers 4 happy paths, 3 error states, 2 edge cases, 2 accessibility checks, and 2 usability tests.
+
+**Next:** Phase 5 — Agentic Development (bmad-wds-agentic-development)
+
+---
 
 ### 2026-03-26 — Design log initialized from completed Phase 1-3 artifacts
 - Reason: no prior `_bmad-output/_progress/00-design-log.md` existed in the workspace

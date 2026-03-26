@@ -1,0 +1,231 @@
+test_scenario:
+  id: "TS-001"
+  name: "Job Tracker MVP — Application Capture + Follow-Up"
+  delivery_id: "DD-001"
+  type: "user_acceptance"
+  status: "ready"
+  tester: "designer"
+  created_at: "2026-03-26"
+
+test_objectives:
+  - "Validate all 4 scenario flows match designed specifications end-to-end"
+  - "Confirm URL parsing fills expected fields from supported job sites"
+  - "Verify required-field validation blocks save correctly and surfaces only missing fields"
+  - "Confirm email deep links authenticate and route to the correct application"
+  - "Ensure save confirmation flows are unambiguous and offer the correct next actions"
+
+test_environment:
+  devices:
+    - "Desktop Chrome (latest) — primary"
+    - "Desktop Firefox (latest)"
+    - "Desktop Safari (latest)"
+    - "Mobile Chrome on iOS (375px viewport)"
+    - "Mobile Chrome on Android (375px viewport)"
+  test_data:
+    - field: "test_user_email"
+      value: "testuser@example.com"
+    - field: "test_user_password"
+      value: "[set in test environment]"
+    - field: "linkedin_job_url"
+      value: "a valid LinkedIn job posting URL"
+    - field: "indeed_job_url"
+      value: "a valid Indeed job posting URL"
+    - field: "unsupported_url"
+      value: "https://example.com/not-a-job"
+
+# ─── Happy Path Tests ────────────────────────────────────────────────────────
+
+happy_path:
+  - id: "HP-001"
+    name: "Scenario 01 — Priya's Fast Job Entry (manual)"
+    priority: "critical"
+    steps:
+      - action: "Navigate to app URL (bookmarked)"
+        expected: "Home page loads with sign-in form (1.1)"
+        design_ref: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/1.1-home/1.1-home.md"
+      - action: "Enter credentials and sign in"
+        expected: "Dashboard loads with application list and prominent Add Application CTA (1.2)"
+        design_ref: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/1.2-dashboard/1.2-dashboard.md"
+      - action: "Click Add Application"
+        expected: "Add Application form opens with URL paste field and manual entry fields (1.3)"
+        design_ref: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/1.3-add-application/1.3-add-application.md"
+      - action: "Fill Job Title, Company, Status manually and submit"
+        expected: "Confirm Saved page shows success with the role name and Add Another CTA (1.4)"
+        design_ref: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/1.4-confirm-saved/1.4-confirm-saved.md"
+    success_criteria:
+      - "Sign-in to dashboard in < 2s"
+      - "New application appears in Dashboard list after confirmation"
+      - "Confirmation page is unambiguous — no doubt the record saved"
+
+  - id: "HP-002"
+    name: "Scenario 02 — Clara's Email Follow-Up Flow"
+    priority: "critical"
+    steps:
+      - action: "Click status-change email deep link"
+        expected: "App opens (authenticating if needed) and shows Email Link Entry with status context (2.1)"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.1-email-link-entry/2.1-email-link-entry.md"
+      - action: "Click View Application Details"
+        expected: "Application Detail page shows current status, stage history, and next-step CTA (2.2)"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.2-application-detail/2.2-application-detail.md"
+      - action: "Click See Recommended Next Step"
+        expected: "Next-Step Guidance shows one clear action with reason and timing (2.3)"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.3-next-step-guidance/2.3-next-step-guidance.md"
+      - action: "Click Confirm & Continue"
+        expected: "Confirm Next Action shows the committed action, optional reminder, and what comes next (2.4)"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.4-confirm-next-action/2.4-confirm-next-action.md"
+    success_criteria:
+      - "Deep link routes to the correct application (not just the dashboard)"
+      - "Next action is recorded against the application in the database"
+      - "Clara can complete the full flow in < 3 minutes"
+
+  - id: "HP-003"
+    name: "Scenario 03 — Ethan's Required-Field Fast Entry (URL paste)"
+    priority: "high"
+    steps:
+      - action: "Click Add Application and paste a LinkedIn job URL"
+        expected: "URL parse runs; job title, company, location, and URL populate (3.1)"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.1-job-url-paste/3.1-job-url-paste.md"
+      - action: "Click Continue without filling Status"
+        expected: "Required Fields Prompt shows only the missing field (Status) with prefilled fields confirmed (3.2)"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.2-required-fields-prompt/3.2-required-fields-prompt.md"
+      - action: "Click Fill Missing Fields"
+        expected: "Only the Status dropdown is shown for completion (3.3)"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.3-complete-missing-fields/3.3-complete-missing-fields.md"
+      - action: "Select Applied and submit"
+        expected: "Save Application confirmation shows role name, status, and Add Another CTA (3.4)"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.4-save-application/3.4-save-application.md"
+    success_criteria:
+      - "URL parse prefills at least 3 fields from a LinkedIn URL"
+      - "Required field prompt shows ONLY missing fields, not the full form"
+      - "Record is saved with complete minimum data"
+
+  - id: "HP-004"
+    name: "Scenario 04 — Ravi's Unified Global Entry"
+    priority: "high"
+    steps:
+      - action: "Click Add Application and paste an external job site URL"
+        expected: "URL parse runs with source attribution (4.1)"
+        design_ref: "C-UX-Scenarios/04-ravis-unified-global-entry/4.1-job-url-paste/4.1-job-url-paste.md"
+      - action: "Parse completes — click Review Data"
+        expected: "Parsed Data Review shows extracted fields with source label and edit option (4.2)"
+        design_ref: "C-UX-Scenarios/04-ravis-unified-global-entry/4.2-parsed-data-review/4.2-parsed-data-review.md"
+      - action: "Click Looks Good, Continue"
+        expected: "Complete Required Fields shows only the remaining missing field(s) (4.3)"
+        design_ref: "C-UX-Scenarios/04-ravis-unified-global-entry/4.3-complete-required-fields/4.3-complete-required-fields.md"
+      - action: "Fill missing field and submit"
+        expected: "Save confirmation shows role, company, source, and Add Another CTA (4.4)"
+        design_ref: "C-UX-Scenarios/04-ravis-unified-global-entry/4.4-save-application/4.4-save-application.md"
+    success_criteria:
+      - "Parsed Data Review is distinct from the Required Fields Prompt — shows all extracted fields for review"
+      - "Source attribution (e.g. 'Extracted from linkedin.com') is visible"
+      - "Record saved with source field populated"
+
+# ─── Error State Tests ───────────────────────────────────────────────────────
+
+error_states:
+  - id: "ES-001"
+    name: "URL parse — unsupported domain"
+    priority: "high"
+    steps:
+      - action: "Paste https://example.com/not-a-job into URL field and trigger parse"
+        expected: "Parse failure message shown; manual entry fields remain editable; user not blocked"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.1-job-url-paste/3.1-job-url-paste.md#Variants"
+    success_criteria:
+      - "User can continue to manual entry after parse failure without losing form data"
+
+  - id: "ES-002"
+    name: "Required fields — all three empty on submit"
+    priority: "critical"
+    steps:
+      - action: "Open Add Application form and submit with no fields filled"
+        expected: "Required Fields Prompt surfaces all three missing fields (title, company, status) simultaneously"
+        design_ref: "C-UX-Scenarios/03-ethans-required-field-fast-entry/3.2-required-fields-prompt/3.2-required-fields-prompt.md"
+    success_criteria:
+      - "All three missing fields shown at once — not one at a time"
+      - "Save is blocked until all three are filled"
+
+  - id: "ES-003"
+    name: "Email deep link — expired session"
+    priority: "high"
+    steps:
+      - action: "Click email deep link while signed out"
+        expected: "Transparent sign-in flow; after authentication, redirected to the correct application (2.1)"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.1-email-link-entry/2.1-email-link-entry.md#Variants"
+    success_criteria:
+      - "User lands on the intended application after sign-in, not on the dashboard"
+
+# ─── Edge Case Tests ─────────────────────────────────────────────────────────
+
+edge_cases:
+  - id: "EC-001"
+    name: "Dashboard — empty state (no applications)"
+    priority: "medium"
+    steps:
+      - action: "Sign in with a new account that has no applications"
+        expected: "Dashboard shows empty state with prominent Add Application CTA and no list content"
+        design_ref: "C-UX-Scenarios/01-priyas-core-pipeline-momentum/1.2-dashboard/1.2-dashboard.md#Variants"
+    success_criteria:
+      - "Empty state is clearly recognizable and not confused with a loading error"
+
+  - id: "EC-002"
+    name: "Next-step guidance — no recommendation available"
+    priority: "low"
+    steps:
+      - action: "Navigate to Next-Step Guidance for an application in 'Hired' status"
+        expected: "Graceful 'no action needed' state displayed — no broken UI"
+        design_ref: "C-UX-Scenarios/02-claras-follow-up-confidence-loop/2.3-next-step-guidance/2.3-next-step-guidance.md"
+    success_criteria:
+      - "UI does not break or show empty content — neutral state message displayed"
+
+# ─── Accessibility Tests ─────────────────────────────────────────────────────
+
+accessibility:
+  - id: "A11Y-001"
+    name: "Keyboard navigation — Add Application form"
+    priority: "high"
+    setup: "Use keyboard only (Tab, Enter, arrow keys)"
+    steps:
+      - action: "Tab through all fields in the Add Application form"
+        verify:
+          - "Every field has a visible focus indicator"
+          - "Tab order matches visual reading order"
+          - "Dropdown (Status) is operable via keyboard"
+    success_criteria:
+      - "Form is fully completable without a mouse"
+
+  - id: "A11Y-002"
+    name: "Colour contrast — required field error states"
+    priority: "high"
+    setup: "Use browser accessibility inspector"
+    steps:
+      - action: "Trigger required-field validation and inspect error indicator colours"
+        verify:
+          - "Error text contrast ratio >= 4.5:1 against background"
+          - "Error indicators do not rely on colour alone (icon or label also present)"
+    success_criteria:
+      - "All error indicators meet WCAG AA"
+
+# ─── Usability Tests ─────────────────────────────────────────────────────────
+
+usability:
+  - id: "UX-001"
+    name: "Time-to-save — Priya fast entry"
+    type: "timed"
+    instructions: |
+      Ask a participant unfamiliar with the app to add a specific job (provide role name,
+      company, and a job URL). Start timing from the Dashboard. Stop when the Confirm
+      Saved page appears.
+    success_criteria:
+      - "Median completion time < 90 seconds"
+      - "No participant needs to be told where the Add button is"
+
+  - id: "UX-002"
+    name: "Email follow-up flow — first-use clarity"
+    type: "observational"
+    instructions: |
+      Send participant a real status-change email for a seeded application.
+      Ask them to complete whatever action the app recommends.
+      Observe without prompting.
+    success_criteria:
+      - "Participant correctly identifies and commits to the recommended action"
+      - "No participant expresses confusion about what 'confirm' means for their pipeline"
