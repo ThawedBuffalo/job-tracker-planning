@@ -110,6 +110,22 @@
 
 ---
 
+### 2026-03-27 — Architecture Document Complete
+
+**Agent:** Winston (BMad Architect Agent)
+**ADRs:** 10 Architecture Decision Records
+**Schema:** 4 tables (users, applications, application_events, notification_log)
+**API:** 18 endpoints across 5 resource groups
+
+**Artifacts Created:**
+- `_bmad-output/planning-artifacts/architecture.md` — Full Architecture Document
+
+**Summary:** Resolved all 6 PRD open questions (JWT refresh strategy, SMTP provider, URL parse fallback UX, stale notification frequency, dashboard sort, layout strategy). Defined complete PostgreSQL schema with Flyway migration plan, full REST API contract with request/response shapes, Spring Boot and Flutter project structures, Docker Compose production stack, implementation patterns (BLoC, service pattern, JWT interceptor), and next-step prompt lookup table for all 10 pipeline statuses.
+
+**Next:** Epic & Story Elaboration — activate `*sm`
+
+---
+
 ### 2026-03-27 — PRD Complete
 
 **Agent:** John (BMad PM Agent)
