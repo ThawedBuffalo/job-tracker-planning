@@ -110,6 +110,20 @@
 
 ---
 
+### 2026-03-27 — Epics & Stories Complete
+
+**Agent:** Bob (BMad SM Agent)
+**Epics:** 8 | **Stories:** 35 | **FRs Covered:** 54/54
+
+**Artifacts Created:**
+- `_bmad-output/planning-artifacts/epics.md` — Full epic and story breakdown
+
+**Summary:** Expanded all 8 PRD epics into 35 implementation-ready stories with Given/When/Then acceptance criteria. Each story is scoped for a single dev-agent session, references the relevant FRs and Architecture decisions, and includes backend + Flutter implementation notes. Defined a 6-sprint delivery sequence (Sprint 0 infra → Sprint 5 notifications). All open architecture questions from the PRD are reflected in story constraints.
+
+**Next:** Implementation — activate dev agent per sprint; start with Sprint 0 (E-008 infrastructure)
+
+---
+
 ### 2026-03-27 — Architecture Document Complete
 
 **Agent:** Winston (BMad Architect Agent)
