@@ -18,9 +18,7 @@ Completed epics with formal retrospective artifacts:
 
 The following epics are **not retro-closed** because scope remains incomplete or deferred:
 
-- `E001` — `E001-S004` still `ready-for-dev`
 - `E005` — `E005-S002` still `ready-for-dev`
-- `E008` — `E008-S002` and `E008-S003` still `ready-for-dev`
 
 These should receive follow-up retrospectives after remaining scope is formally completed or descoped.
 
