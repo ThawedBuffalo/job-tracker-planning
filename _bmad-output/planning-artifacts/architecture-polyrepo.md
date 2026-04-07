@@ -3,7 +3,7 @@ workflowType: architecture
 project_name: job-tracker
 author: JC
 date: 2026-03-30
-status: Draft - Microservices Baseline
+status: Active - Microservices Baseline (Ready for DS)
 supersedes:
   - _bmad-output/planning-artifacts/architecture.md
 inputs:

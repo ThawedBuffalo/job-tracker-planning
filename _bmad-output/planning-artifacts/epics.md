@@ -9,9 +9,16 @@ inputDocuments:
   - _bmad-output/planning-artifacts/architecture.md
   - design-artifacts/A-Product-Brief/project-brief.md
   - design-artifacts/E-PRD/Design-Deliveries/DD-001-application-capture-and-follow-up.yaml
+status: Legacy Reference (Monolith Baseline)
+supersededBy:
+  - _bmad-output/planning-artifacts/architecture-polyrepo.md
+  - _bmad-output/planning-artifacts/STORY-MAP.md
 ---
 
 # job-tracker — Epic & Story Breakdown
+
+> Legacy artifact from monolith planning pass. Keep for reference only.
+> Active execution sequencing and dependency source of truth: `_bmad-output/planning-artifacts/STORY-MAP.md`.
 
 **Author:** JC
 **SM Agent:** Bob
@@ -26,7 +33,7 @@ Complete epic and story breakdown for `job-tracker`, decomposing PRD functional 
 
 **Stack:** Flutter Web (frontend) · Spring Boot 3.4 / Java 21 (backend API) · PostgreSQL 16 · Docker Compose + Nginx (infrastructure)
 
-**Architectural note:** This is a **monolith** — one Spring Boot API, one Flutter Web frontend, one PostgreSQL database. Stories that touch both layers describe both the backend endpoint and the Flutter UI/BLoC in the same story.
+**Architectural note (legacy):** This document assumes a **monolith** baseline and is not the active implementation source after polyrepo re-baselining.
 
 ---
 

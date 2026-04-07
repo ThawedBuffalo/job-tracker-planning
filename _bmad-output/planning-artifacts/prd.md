@@ -32,6 +32,8 @@ documentCounts:
   researchCount: 0
   brainstormingCount: 0
   projectDocsCount: 6
+lastEdited: 2026-04-06
+editSummary: "EP pass: tightened FR/NFR measurability, added browser matrix targets, and improved traceability notes"
 ---
 
 # Product Requirements Document — job-tracker
@@ -309,9 +311,9 @@ Optional but encouraged fields (can be filled later):
 |----|-------------|
 | FR-001 | A visitor can register with email and password to create an account |
 | FR-002 | A registered user can sign in with email and password |
-| FR-003 | The system issues a short-lived JWT access token on successful authentication |
+| FR-003 | The system issues a JWT access token with a 15-minute expiry on successful authentication |
 | FR-004 | An authenticated user can sign out, invalidating the active session |
-| FR-005 | An authenticated user can update their account email or password |
+| FR-005 | An authenticated user can update their account email or password (supports account recovery and credential hygiene) |
 | FR-006 | The system stores passwords using a strong hash (BCrypt/Argon2); no plaintext |
 
 ---
@@ -328,7 +330,7 @@ Optional but encouraged fields (can be filled later):
 | FR-015 | A newly saved application defaults to `identified` status |
 | FR-016 | An authenticated user can attach optional fields (notes, JD text, salary range, contact info, applied date, follow-up date) to any application |
 | FR-017 | An authenticated user can edit an existing application record |
-| FR-018 | An authenticated user can delete an application record |
+| FR-018 | An authenticated user can delete an application record (supports cleanup of duplicates or no-longer-relevant entries) |
 
 ---
 
@@ -342,7 +344,7 @@ Optional but encouraged fields (can be filled later):
 | FR-023 | An authenticated user can mark an application as `closed` |
 | FR-024 | Terminal status applications (`rejected`, `closed`) require explicit user intent to reverse |
 | FR-025 | Every status change is recorded as an append-only audit event with timestamp and actor |
-| FR-026 | The system displays a context-sensitive "next step" prompt after every status change |
+| FR-026 | The system displays a stage-specific "next step" prompt after every status change using predefined guidance mapped to each pipeline stage (e.g., `submitted` -> `follow up in 3-5 business days`) |
 
 ---
 
@@ -351,7 +353,7 @@ Optional but encouraged fields (can be filled later):
 | ID | Requirement |
 |----|-------------|
 | FR-030 | An authenticated user can view a dashboard listing all active applications with current status |
-| FR-031 | The dashboard groups or sorts applications by status and recency |
+| FR-031 | The dashboard groups applications by status and supports sorting by last status-change timestamp (descending by default) |
 | FR-032 | The dashboard visually distinguishes stalled applications (7+ days without change) |
 | FR-033 | An authenticated user can view the full detail record of any application |
 | FR-034 | An authenticated user can view the complete chronological status history of an application |
@@ -369,8 +371,8 @@ Optional but encouraged fields (can be filled later):
 | FR-042 | The system sends an email to the user when an active application has had no status change for 7 days |
 | FR-043 | Stall notifications are only sent for non-terminal applications |
 | FR-044 | Email notifications include: application name, company, current status, and a direct link to the application detail |
-| FR-045 | The user can opt out of individual notification types (stage-change, follow-up, stall) |
-| FR-046 | The system retries failed email sends with exponential backoff |
+| FR-045 | The user can opt out of individual notification types (stage-change, follow-up, stall) to control notification fatigue |
+| FR-046 | The system retries failed email sends with increasing intervals, up to 5 attempts within a 24-hour retry window |
 
 ---
 
@@ -393,14 +395,14 @@ Optional but encouraged fields (can be filled later):
 | NFR | Target | Rationale |
 |-----|--------|-----------|
 | NFR-P-001 | Dashboard first meaningful load < 3s on 4G | Core daily-use screen; slow load kills habit |
-| NFR-P-002 | API response time < 500ms (p95) under normal load | Solo user, low concurrency; highly achievable |
-| NFR-P-003 | URL parse + form pre-fill < 2s | User is on the source page; delay feels broken |
+| NFR-P-002 | API response time < 500ms (p95) under normal load, measured via APM traces during baseline load tests | Solo user, low concurrency; highly achievable |
+| NFR-P-003 | URL parse + form pre-fill < 2s (p95) under normal load, measured via endpoint timing metrics during load tests | User is on the source page; delay feels broken |
 
 ### Reliability & Availability
 
 | NFR | Target | Rationale |
 |-----|--------|-----------|
-| NFR-R-001 | 99.5% uptime (VPS single-node; some maintenance window allowed) | Solo engineer; no SLA to external stakeholders |
+| NFR-R-001 | 99.5% uptime per calendar month (excluding planned maintenance), measured by external uptime monitoring checks | Solo engineer; no SLA to external stakeholders |
 | NFR-R-002 | Email delivery: retry with backoff for up to 24 hours on failure | SMTP transient failures must not lose notifications |
 | NFR-R-003 | Database backup: daily automated backup with 7-day retention | Data loss for job seeker is high impact |
 
@@ -419,8 +421,8 @@ Optional but encouraged fields (can be filled later):
 
 | NFR | Target | Rationale |
 |-----|--------|-----------|
-| NFR-SC-001 | Support single-user concurrent sessions without degradation | v1 is effectively single-user per account; shared infra |
-| NFR-SC-002 | Database schema designed to support multi-user without redesign | Future-proofs toward multi-user without migration pain |
+| NFR-SC-001 | Support up to 5 concurrent sessions per account while keeping API latency under 500ms (p95) under normal load | v1 is effectively single-user per account; shared infra |
+| NFR-SC-002 | Schema supports at least 10,000 users and 1,000,000 application records without table redesign, validated by migration dry-run and representative load test before release | Future-proofs toward multi-user without migration pain |
 
 ### Maintainability
 
@@ -435,11 +437,11 @@ Optional but encouraged fields (can be filled later):
 
 | NFR | Target |
 |-----|--------|
-| NFR-A-001 | Responsive layout functional on desktop and modern mobile browsers |
+| NFR-A-001 | Responsive layout functional on desktop and mobile for Chrome 120+, Safari 17+, Firefox 124+, and Edge 120+ |
 | NFR-A-002 | Page load under 3MB total weight |
 | NFR-A-003 | LCP < 2.5s, CLS < 0.1, FID < 100ms |
 | NFR-A-004 | English only (v1) |
-| NFR-A-005 | WCAG 2.1 AA compliance for core application flows |
+| NFR-A-005 | WCAG 2.1 AA compliance for core application flows, verified via automated axe/Lighthouse scans plus manual keyboard and screen-reader checks before release |
 
 ---
 

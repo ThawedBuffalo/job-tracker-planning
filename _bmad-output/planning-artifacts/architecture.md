@@ -18,9 +18,14 @@ workflowType: architecture
 project_name: job-tracker
 user_name: JC
 date: 2026-03-27
+status: Superseded
+supersededBy: _bmad-output/planning-artifacts/architecture-polyrepo.md
 ---
 
-# Architecture Document — job-tracker
+# Architecture Document — job-tracker (Superseded)
+
+> This monolith baseline is retained for historical reference only.
+> Active architecture source of truth: `_bmad-output/planning-artifacts/architecture-polyrepo.md`.
 
 **Author:** JC
 **Architect Agent:** Winston
