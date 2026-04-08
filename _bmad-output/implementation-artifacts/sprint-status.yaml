@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-04-06T12:00:00Z
-last_updated: 2026-04-06T23:59:00Z
+last_updated: 2026-04-08T10:40:00Z
 project: job-tracker-planning
 project_key: NOKEY
 tracking_system: file-system
@@ -64,9 +64,9 @@ development_status:
   E004-S003: done
   epic-E004-retrospective: done
 
-  epic-E005: in-progress
+  epic-E005: done
   E005-S001: done
-  E005-S002: ready-for-dev
+  E005-S002: done
   epic-E005-retrospective: optional
 
   epic-E006: done
@@ -86,6 +86,23 @@ development_status:
   E008-S003: done
   E008-S004: done
   epic-E008-retrospective: optional
+
+  # ─── Wave 2 ─────────────────────────────────────────────────────────────────
+  epic-E009: backlog
+  epic-E010: done
+  E010-S001: done
+  E010-S002: done
+  E010-S003: done
+  E010-S004: done
+  epic-E011: done
+  E011-S001: done
+  E011-S002: done
+  E011-S003: done
+  E011-S004: done
+  epic-E012: backlog
+  epic-E013: backlog
+  epic-E014: backlog
+  epic-E015: backlog
 
   legacy-epic-8: archived
   legacy-8-1-docker-compose-local-development-environment: archived

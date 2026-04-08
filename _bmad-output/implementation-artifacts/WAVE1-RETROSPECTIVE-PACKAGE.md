@@ -16,11 +16,13 @@ Completed epics with formal retrospective artifacts:
 
 ## Deferred / Partial Epics
 
-The following epics are **not retro-closed** because scope remains incomplete or deferred:
+All Wave 1 epics are now fully implemented:
 
-- `E005` — `E005-S002` still `ready-for-dev`
+- `E005-S002` completed 2026-04-07 — Flutter dashboard list with status, sort, and search.
 
-These should receive follow-up retrospectives after remaining scope is formally completed or descoped.
+`epic-E005` remains `in-progress` in `sprint-status.yaml` pending a formal retrospective closure
+(per the Wave 1 retro guidance). The retrospective can be written and `epic-E005` closed at the
+next checkpoint.
 
 ## Cross-Epic Wins
 
