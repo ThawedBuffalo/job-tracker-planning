@@ -1,6 +1,6 @@
 # Story E004-S002: Implement pipeline transition validation and append-only events
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -56,4 +56,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E004-S002-implement-pipeline-transition-validation-events.md`
-

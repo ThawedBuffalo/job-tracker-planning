@@ -1,6 +1,6 @@
 # Story E003-S001: Implement URL parse endpoint in job-service
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -56,4 +56,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E003-S001-implement-job-service-url-parse-endpoint.md`
-

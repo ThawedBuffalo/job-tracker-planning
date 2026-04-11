@@ -1,6 +1,6 @@
 # Story E001-S002: Implement user-service register/login/refresh/logout
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -56,4 +56,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E001-S002-implement-user-service-auth.md`
-

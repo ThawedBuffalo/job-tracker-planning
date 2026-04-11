@@ -1,6 +1,6 @@
 # Story E001-S003: Implement gateway auth route forwarding and JWT enforcement
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -56,4 +56,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E001-S003-implement-gateway-auth-routing-jwt-enforcement.md`
-

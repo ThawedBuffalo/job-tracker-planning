@@ -1,6 +1,6 @@
 # Story E002-S002: Implement job-service create/read/update/delete applications
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -56,4 +56,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E002-S002-implement-job-service-application-crud.md`
-

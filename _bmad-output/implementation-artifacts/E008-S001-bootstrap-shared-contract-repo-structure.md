@@ -1,6 +1,6 @@
 # Story E008-S001: Bootstrap Shared Contract Repo Structure
 
-Status: ready-for-dev
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -89,4 +89,3 @@ To be filled by dev agent.
 ### File List
 
 - `_bmad-output/implementation-artifacts/E008-S001-bootstrap-shared-contract-repo-structure.md`
-
