@@ -1,6 +1,6 @@
 # Story E009-S004: Export to CSV / PDF reports
 
-Status: review
+Status: done
 
 ## Story
 
